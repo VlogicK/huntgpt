@@ -29,7 +29,7 @@ An AI-native security assistant that helps SOC analysts and threat hunters gener
 
 ## 🧪 Demo
 
-```bash```
+```bash
 # Run the app
 streamlit run main.py
 
