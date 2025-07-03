@@ -37,5 +37,4 @@ streamlit run main.py
 Example Prompts
 "Show me failed RDP logons from outside NZ in the past week."
 "Summarize this Defender alert JSON for triage."
-"Is this IP malicious? 185.220.101.1"
 "List MITRE techniques used in ransomware campaigns."
