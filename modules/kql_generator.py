@@ -2,8 +2,13 @@ import ollama
 
 def generate_kql(natural_language_query: str) -> str:
     prompt = f"""
-You are a security analyst skilled in Microsoft Sentinel and KQL.
-Convert this natural language request into a KQL query:
+You are a cybersecurity analyst using Microsoft Defender XDR for threat hunting.
+Generate a KQL query using appropriate Defender XDR tables such as:
+
+- DeviceEvents, DeviceProcessEvents, DeviceNetworkEvents, DeviceLogonEvents
+- IdentityLogonEvents, IdentityQueryEvents
+- EmailEvents, EmailAttachmentInfo, EmailUrlInfo
+- CloudAppEvents, AppFileEvents
 
 Request: {natural_language_query}
 
