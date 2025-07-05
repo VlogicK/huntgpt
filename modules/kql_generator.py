@@ -2,46 +2,70 @@ import ollama
 
 def generate_kql(user_query: str, mode: str) -> str:
     if mode == "Microsoft Defender XDR":
+        schema_reference = """Available Defender XDR tables and key columns:
+
+- DeviceProcessEvents:
+  Timestamp, FileName, FolderPath, ProcessCommandLine, InitiatingProcessFileName, InitiatingProcessParentFileName
+
+- DeviceLogonEvents:
+  Timestamp, DeviceName, AccountName, ActionType, LogonType, RemoteIP, RemoteDeviceName
+
+- DeviceNetworkEvents:
+  Timestamp, DeviceName, RemoteIP, RemotePort, InitiatingProcessFileName, InitiatingProcessCommandLine, Protocol
+
+- DeviceFileEvents:
+  Timestamp, DeviceName, FileName, FolderPath, SHA1, ActionType
+
+- IdentityLogonEvents:
+  Timestamp, AccountUpn, IPAddress, Application, ResultType, Location, ResourceDisplayName
+
+- EmailEvents:
+  Timestamp, SenderFromAddress, RecipientEmailAddress, Subject, NetworkMessageId, DeliveryAction, ThreatTypes
+
+- EmailAttachmentInfo:
+  Timestamp, FileName, SHA256, FileType, EmailNetworkMessageId
+
+- CloudAppEvents:
+  Timestamp, AppName, ActionType, AccountName, IPAddress, DeviceName
+"""
+
         prompt = f"""
-You are a cybersecurity expert hunting in Microsoft Defender XDR using advanced KQL queries.
+You are a Microsoft Defender XDR threat hunter.
+Generate a KQL query using only the following schema:
 
-Here are some examples:
+{schema_reference}
 
-Request: Show all PowerShell executions in the last day  
-KQL:
-DeviceProcessEvents
-| where FileName has "powershell.exe"
-| where Timestamp > ago(1d)
+Request: {user_query}
 
-Request: List failed RDP logins on endpoints  
-KQL:
-DeviceLogonEvents
-| where LogonType == "RemoteInteractive"
-| where ActionType == "LogonFailed"
-
-Now generate a KQL query for the following request:
-
-Request: {user_query}  
 KQL:
 """
     else:
+        schema_reference = """Available Microsoft Sentinel (Log Analytics) tables and key columns:
+
+- SecurityEvent:
+  TimeGenerated, EventID, AccountName, Computer, LogonType, Status, TargetUserName, SubjectUserName
+
+- SigninLogs:
+  TimeGenerated, UserPrincipalName, IPAddress, Location, ResultType, AppDisplayName, ConditionalAccessStatus
+
+- OfficeActivity:
+  TimeGenerated, Operation, UserId, Workload, ClientIP, Site_Url, ObjectId
+
+- AzureDiagnostics:
+  TimeGenerated, ResourceId, Category, ActivityStatus, Identity, ResultDescription
+
+- AzureActivity:
+  TimeGenerated, Caller, Category, OperationName, ActivityStatusValue, ResourceGroup
+
+- AuditLogs:
+  TimeGenerated, LoggedByService, OperationName, Result, TargetResources, InitiatedBy
+
+- Heartbeat:
+  TimeGenerated, Computer, IPAddress, RemoteIPCountry, OSType, OSName"""
         prompt = f"""
-You are a cybersecurity expert working in Microsoft Sentinel.
+You are a security analyst working in Microsoft Sentinel. Use only tables like SecurityEvent, SigninLogs, OfficeActivity.
 
-Examples:
-
-Request: Show failed logons by admin accounts  
-KQL:
-SecurityEvent
-| where EventID == 4625 and AccountType == "Administrator"
-
-Request: Find logins from foreign IPs  
-KQL:
-SigninLogs
-| where Location !in ("New Zealand", "Australia")
-
-Now convert:
-Request: {user_query}  
+Request: {user_query}
 KQL:
 """
 
