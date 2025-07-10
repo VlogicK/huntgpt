@@ -11,7 +11,7 @@ def generate_kql(user_query: str, mode: str) -> str:
   Timestamp, DeviceName, AccountName, ActionType, LogonType, RemoteIP, RemoteDeviceName
 
 - DeviceNetworkEvents:
-  Timestamp, DeviceName, RemoteIP, RemotePort, InitiatingProcessFileName, InitiatingProcessCommandLine, Protocol
+  Timestamp, DeviceName, RemoteIP, RemotePort, LocalPort, InitiatingProcessFileName, InitiatingProcessCommandLine, Protocol
 
 - DeviceFileEvents:
   Timestamp, DeviceName, FileName, FolderPath, SHA1, ActionType
