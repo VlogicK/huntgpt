@@ -1,12 +1,4 @@
 {
-"files.exclude": {
-  "**/venv": true,
-  "**/.env": true
-},
-"search.exclude": {
-  "**/venv": true,
-  "**/.env": true
-}
 
 
 }
