@@ -1,17 +1,12 @@
 # huntgpt
-An AI-native security assistant that helps SOC analysts and threat hunters generate queries, enrich IOCs, analyze logs, and triage alerts — all via natural language.
+An AI-native security assistant that helps SOC analysts and threat hunters generate queries via natural language.
 ![HUNTGPT Screenshot Placeholder](screenshot.png)
 
 ---
 
-## 🚀 Features
+## 🚀 Features in phase 1
 
 - 💬 **Natural Language to KQL** – Describe your hunt, get ready-to-run queries.
-- 🧠 **Log File Summarization** – Upload logs and get key anomalies and behavior insights.
-- 🔎 **IOC Enrichment** – Get threat intelligence for IPs, domains, and hashes via VirusTotal and GreyNoise.
-- ⚡ **Alert Summarizer** – Input raw alerts (e.g. Defender or Sentinel JSON) and get context, risks, and recommended steps.
-- 🧭 **MITRE ATT&CK Integration** – Ask about techniques and get mapped references.
-
 ---
 
 ## 🛠️ Tech Stack
