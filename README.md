@@ -18,12 +18,9 @@ An AI-native security assistant that helps SOC analysts and threat hunters gener
 
 | Component       | Tech                         |
 |----------------|------------------------------|
-| Backend         | Python + FastAPI             |
+| Backend         | Python                       |
 | Frontend        | Streamlit                    |
-| AI Engine       | OpenAI GPT-4 / Ollama LLM    |
-| Log Analysis    | Pandas, regex, evtxtract     |
-| Enrichment APIs | VirusTotal, GreyNoise, AbuseIPDB |
-| Prompt Handling | LangChain / Custom Templates |
+| AI Engine       | Ollama LLM                   |
 
 ---
 
